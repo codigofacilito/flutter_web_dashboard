@@ -12,3 +12,4 @@ const Color background = Color(0xFFF3F4FF);
 const Color green = Color(0xFF4CBC9A);
 const Color red = Color(0xFFFF4550);
 const hintColor=Color(0xFF808E93);
+const black=Color(0xFF000000);

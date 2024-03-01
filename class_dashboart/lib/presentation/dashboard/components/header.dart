@@ -22,12 +22,13 @@ class Header extends StatelessWidget {
                 context.read<MainChangeNotifier>().controlMenu();
               },
               icon: const Icon(Icons.menu)),
-        Spacer(),
         Text(
           context.watch<MainChangeNotifier>().currentItem.title,
           style: theme.textTheme.titleLarge!
               .copyWith(color: text, fontWeight: FontWeight.bold),
         ),
+        Spacer(),
+     if(ResponsiveBreakpoints.of(context).isDesktop)
         Expanded(child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
     child:searchWidget())),
@@ -52,7 +53,7 @@ class Header extends StatelessWidget {
   }
 
   searchWidget(){
-    return Container(
+    return Material(child:Container(
       height: 50.0,
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
@@ -61,13 +62,13 @@ class Header extends StatelessWidget {
       ),
       child: Row(children: [
         IconButton(onPressed: (){}, icon: Icon(Icons.search,color: hintColor,)),
-        Expanded(child: TextField(
+        Expanded(child:  TextField(
           decoration: InputDecoration.collapsed(
               hintText: "Busca aqui",
           hintStyle:theme.textTheme.bodySmall!.copyWith(color: hintColor),
           border: InputBorder.none),
         ))
       ],),
-    );
+    ));
   }
 }

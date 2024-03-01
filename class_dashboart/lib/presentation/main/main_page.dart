@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../dashboard/dashboard_page.dart';
+import '../students/students_page.dart';
 
 class MainPage extends StatelessWidget{
   @override
@@ -16,6 +17,7 @@ class MainPage extends StatelessWidget{
       drawer: SideMenu(),
       body: SafeArea(
         child: Row(
+          crossAxisAlignment:CrossAxisAlignment.start ,
           children: [
             if(!ResponsiveBreakpoints.of(context).isTablet)
                Expanded(child: SideMenu(),),
@@ -26,7 +28,7 @@ class MainPage extends StatelessWidget{
                   children: [
                     SizedBox.shrink(),
                     DashboardPage(),
-                    Text("3"),
+                    StudentPage(),
                     Text("4"),
                     Text("5"),
                     Text("6"),

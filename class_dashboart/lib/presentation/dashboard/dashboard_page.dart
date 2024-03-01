@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 import 'components/header.dart';
+import 'components/staff/my_staff.dart';
+import 'components/survey/survey.dart';
 
 class DashboardPage extends StatelessWidget{
   @override
@@ -10,13 +12,18 @@ class DashboardPage extends StatelessWidget{
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16.0),
           child: Column(children: [
-            Header(),
-            SizedBox(height: 16.0,),
+          Header(),
+          const SizedBox(height: 16.0,),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(child: Column(children: [
-
-                ],))
+                Expanded(child:
+                Column(
+                  children: [
+                  MyStaff(),
+                  SizedBox(height: 16.0,),
+                 SchoolSurvey()
+                ],crossAxisAlignment: CrossAxisAlignment.start,))
               ],
             )
           ],),

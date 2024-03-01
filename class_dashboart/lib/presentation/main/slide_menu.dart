@@ -15,6 +15,7 @@ class SideMenu extends StatelessWidget{
     return Drawer(
       backgroundColor: purple,
       child: ListView.builder(
+        padding: EdgeInsets.only(left: 30),
           itemCount: MenuModel.initialMenu.length,
           itemBuilder: (context,index){
             MenuModel menuModel = MenuModel.initialMenu[index];
@@ -22,9 +23,16 @@ class SideMenu extends StatelessWidget{
               return DrawerHeader(child: SvgPicture.asset("assets/icons/${menuModel.icon}"));
             }
           return ListTile(
-            title: Text(menuModel.title),
-            leading:SvgPicture.asset("assets/icons/${menuModel.icon}",
-            colorFilter: ColorFilter.mode(gray2,BlendMode.srcIn ),) ,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                bottomLeft: Radius.circular(30)
+              )
+            ),
+            title: Text(menuModel.title,style: TextStyle(color:isSelectMenuContent(context,menuModel)),),
+            tileColor: isSelectItem(context,menuModel),
+            leading: SvgPicture.asset("assets/icons/${menuModel.icon}",
+            colorFilter: ColorFilter.mode(isSelectMenuContent(context,menuModel),BlendMode.srcIn ),) ,
             onTap: (){
               main.addCurrentItem(menuModel);
             },
@@ -33,4 +41,9 @@ class SideMenu extends StatelessWidget{
     );
   }
 
+  isSelectItem(BuildContext context,MenuModel menuModel)
+  => context.watch<MainChangeNotifier>().currentItem==menuModel?background:purple;
+
+  isSelectMenuContent(BuildContext context,MenuModel menuModel)=>
+      context.watch<MainChangeNotifier>().currentItem==menuModel?purple:gray2;
 }
